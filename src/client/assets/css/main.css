@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Titillium+Web:400,700');
+
+@font-face {
+  font-family: 'fontello';
+  src: url('~/assets/fonts/fontello.eot?34959948');
+  src: url('~/assets/fonts/fontello.eot?34959948#iefix') format('embedded-opentype'),
+       url('~/assets/fonts/fontello.woff2?34959948') format('woff2'),
+       url('~/assets/fonts/fontello.woff?34959948') format('woff'),
+       url('~/assets/fonts/fontello.ttf?34959948') format('truetype'),
+       url('~/assets/fonts/fontello.svg?34959948#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('~/assets/fonts/fontello.svg?34959948#fontello') format('svg');
+  }
+}
+
+
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-phone:before { content: '\e800'; } /* '' */
+.icon-location:before { content: '\e801'; } /* '' */
+.icon-mail:before { content: '\e802'; } /* '' */
+.icon-videocam:before { content: '\e803'; } /* '' */
+.icon-picture:before { content: '\e804'; } /* '' */
+.icon-book-open:before { content: '\e805'; } /* '' */
+.icon-star:before { content: '\e806'; } /* '' */
+.icon-twitter:before { content: '\f099'; } /* '' */
+.icon-plus-squared:before { content: '\f0fe'; } /* '' */
+.icon-instagram:before { content: '\f16d'; } /* '' */
+.icon-bank:before { content: '\f19c'; } /* '' */
+.icon-facebook-squared:before { content: '\f308'; } /* '' */
+.icon-users:before { content: '\e807'; } /* '' */
+.icon-cancel:before { content: '\e808'; } /* '' */
+
+html {
+  font-size: 62.5%;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  -ms-overflow-style: scrollbar;
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  h: 100%;
+  fz: 1.8rem;
+  color: #000 #FFF;
+  t-r: optimizeLegibility;
+  ff: system-ui;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  -moz-osx-font-smoothing: grayscale;
+  mih: 100vh;
+  lh: 1.2;
+  pos: relative;
+  fw: normal;
+  ff: 'Titillium Web', sans-serif;
+}
+
+.container {
+  mih: 1px;
+
+  &--full {
+    w: 100%;
+  }
+
+  &--block {
+    w: 80%;
+    m: 0 auto;
+
+    &__ct {
+      w: 55%;
+      m: 0 auto;
+    }
+  }
+
+  &--wr {
+    display: block;
+
+    &:after, &:before {
+      cnt: '';
+      cl: both;
+      d: table;
+    }
+  }
+  &--rel {
+    pos: relative;
+  }
+  &--ovh {
+    ofl: hidden;
+  }
+}
+
+.btn-primary {
+  display: inline-block;
+  c: #FFF map(colors, secondary);
+  border-radius: 25px;
+  padding: 1rem 3.6rem;
+  text-transform: capitalize;
+  text-decoration: none;
+  fz: 1.6rem;
+  fw: 700;
+  -webkit-box-shadow: 1px 1px 10px 2px rgba(114,43,194,1);
+  -moz-box-shadow: 1px 1px 10px 2px rgba(114,43,194,1);
+  box-shadow: 1px 1px 10px 2px rgba(114,43,194,1);
+
+  &:hover {
+    c: map(colors, primary);
+  }
+
+  &:hover, &:focus {
+    outline: none;
+  }
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal__close--btn {
+    bg: #000;
+    text-decoration: none;
+    border-radius: 50%;
+    color: #FFF;
+    position: absolute;
+    display: block;
+    right: -5%;
+    padding: 1rem .8rem;
+    top: -7%;
+
+    &:hover {
+      c: map(colors, primary);
+    }
+
+    &:hover, &:focus {
+      outline: none;
+    }
+}
+
+.modal-container {
+  width: 450px;
+  position: relative;
+  margin: 0px auto;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  background: rgba(114,43,194,1);
+  background: -moz-linear-gradient(top, rgba(114,43,194,1) 0%, rgba(184,107,220,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(114,43,194,1)), color-stop(100%, rgba(184,107,220,1)));
+  background: -webkit-linear-gradient(top, rgba(114,43,194,1) 0%, rgba(184,107,220,1) 100%);
+  background: -o-linear-gradient(top, rgba(114,43,194,1) 0%, rgba(184,107,220,1) 100%);
+  background: -ms-linear-gradient(top, rgba(114,43,194,1) 0%, rgba(184,107,220,1) 100%);
+  background: linear-gradient(to bottom, rgba(114,43,194,1) 0%, rgba(184,107,220,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#722bc2', endColorstr='#b86bdc', GradientType=0 );
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
