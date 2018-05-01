@@ -7,7 +7,8 @@ import {
   courseUpdate,
   courseDelete,
   lectureCreate,
-  contentCreate
+  contentCreate,
+  createTest
 } from './controller';
 
 
@@ -49,6 +50,14 @@ export const routes = [
     handlers: [
       isAuthenticated,
       courseCreate
+    ]
+  },
+  {
+    method: 'POST',
+    route: '/test',
+    handlers: [
+      isAuthenticated,
+      createTest
     ]
   },
   {

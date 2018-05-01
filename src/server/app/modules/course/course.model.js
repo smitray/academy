@@ -24,6 +24,11 @@ const courseSchema = new mongoose.Schema({
     ref: 'lectureModel',
     default: null
   }],
+  courseTest: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'testModel',
+    default: null
+  },
   students: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'authModel',

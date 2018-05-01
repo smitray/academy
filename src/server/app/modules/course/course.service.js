@@ -1,9 +1,9 @@
-// import _ from 'lodash';
 import { Crud } from '@utl';
 
 import courseModel from './course.model';
 import { lectureCrud } from './lecture.model';
 import { contentCrud } from './content.model';
+import { testCrud } from './coursetest.model';
 import { filesModel } from '../files';
 import { userCrud } from '../auth';
 
@@ -17,6 +17,7 @@ class CourseService extends Crud {
     this.contentCrud = contentCrud;
     this.filesCrud = filesCrud;
     this.userCrud = userCrud;
+    this.testCrud = testCrud;
   }
 
   async createCourse(options) {
@@ -45,6 +46,23 @@ class CourseService extends Crud {
     return new Promise((resolve, reject) => {
       user.save().then(() => {
         resolve(record);
+      }).catch((e) => {
+        reject(e);
+      });
+    });
+  }
+
+  async createTest(options) {
+    const testRecord = await this.testCrud.create(options);
+    const record = await this.single({
+      qr: {
+        _id: options.course
+      }
+    });
+    record.courseTest = testRecord._id;
+    return new Promise((resolve, reject) => {
+      record.save().then(() => {
+        resolve(testRecord);
       }).catch((e) => {
         reject(e);
       });

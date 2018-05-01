@@ -7,6 +7,7 @@
     </page-banner>
     <!-- Page banner end -->
     <div class="container container--wr container--ovh container--rel container--block__ct addCourse--wr">
+      <router-link :to="{ name: 'auth' }"><i class="icon-"></i>Back to dashboard</router-link>
       <form enctype="multipart/form-data">
         <div class="course__ct" v-if="!course.courseId">
           <input type="text" placeholder="Title of course" v-model="courseTitle">
@@ -32,12 +33,10 @@
         </div>
         <div class="add__lecture--btn">
           <a href="#" @click.prevent="addLectureToggle">Add lecture</a>
-          <a href="#" @click.prevent="addLectureToggle">Done</a>
         </div>
         <div class="addCourse__addLecture--form" v-if="lectureShow">
           <input type="text" placeholder="Add lecture title" v-model="lectureTitle" v-on:blur="addContent">
           <a href="#" @click.prevent="addContentToggle">Add content</a>
-          <a href="#" @click.prevent="addContentToggle">Done</a>
         </div>
         <div class="addCourse__addContent--form" v-if="contentShow">
           <input type="text" placeholder="Add content title" v-model="contentTitle">
@@ -231,8 +230,6 @@
         a {
           text-decoration: none;
           text-align: center;
-          display: inline-block;
-          w: 49%;
 
           &:hover {
             c: map(colors, primary);

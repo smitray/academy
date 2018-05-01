@@ -9,10 +9,17 @@ const courseAll = async (ctx) => {
   try {
     courses = await courseCrud.get();
   } catch (e) {
-    ctx.throw(404, e.message);
+    ctx.throw(404, {
+      success: 0,
+      message: e.message
+    });
   } finally {
     ctx.body = {
-      body: courses
+      success: 1,
+      data: {
+        courses
+      },
+      message: 'Course created successfully'
     };
   }
 };
@@ -21,7 +28,10 @@ const courseSingle = async (ctx) => {
   try {
     course = await courseCrud.single({ _id: ctx.params.id });
   } catch (e) {
-    ctx.throw(404, e.message);
+    ctx.throw(404, {
+      success: 0,
+      message: e.message
+    });
   } finally {
     ctx.body = {
       body: course
@@ -147,7 +157,10 @@ const contentCreate = async (ctx) => {
       }
     });
   } catch (e) {
-    ctx.throw(422, e.message);
+    ctx.throw(422, {
+      success: 0,
+      message: e.message
+    });
   } finally {
     ctx.body = {
       success: 1,
@@ -159,6 +172,25 @@ const contentCreate = async (ctx) => {
   }
 };
 
+const createTest = async (ctx) => {
+  try {
+    courseNew = await courseCrud.createTest(ctx.request.body);
+  } catch (e) {
+    ctx.throw(422, {
+      success: 0,
+      message: e.message
+    });
+  } finally {
+    ctx.body = {
+      success: 1,
+      data: {
+        test: courseNew
+      },
+      message: 'Test created successfully'
+    };
+  }
+};
+
 export {
   courseAll,
   courseSingle,
@@ -166,5 +198,6 @@ export {
   courseUpdate,
   courseDelete,
   lectureCreate,
-  contentCreate
+  contentCreate,
+  createTest
 };

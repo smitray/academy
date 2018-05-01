@@ -5,7 +5,7 @@
       Courses
     </page-banner>
     <!-- Page banner end -->
-    <my-courses/>
+    <my-courses :courses="courses" />
   </section>
 </template>
 
@@ -14,9 +14,25 @@
   import PageBanner from '~/components/pageBanner.vue';
 
   export default {
+    data: () => ({
+      courses: {}
+    }),
     components: {
       MyCourses,
       PageBanner
+    },
+    mounted() {
+      this.allCourse();
+    },
+    methods: {
+      async allCourse() {
+        try {
+          const { data } = await this.$axios.$get('/api/course');
+          this.courses = data.courses;
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   };
 </script>

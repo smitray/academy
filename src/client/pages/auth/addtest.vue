@@ -7,42 +7,111 @@
     </page-banner>
     <!-- Page banner end -->
     <div class="container container--wr container--ovh container--rel container--block__ct addCourse--wr">
+      <router-link :to="{ name: 'auth' }"><i class="icon-"></i>Back to dashboard</router-link>
       <form action="">
-        <input type="text" placeholder="Titel of the test" v-model="testTitle">
-        <select v-model="course">
+        <input type="text" placeholder="Question" v-model="test.title">
+        <select v-model="test.course">
           <option value="placeholder" disabled>Choose course</option>
-          <option v-for="option in options" v-bind:value="option.value">
-            {{ option.text }}
+          <option v-for="course in courses" v-bind:value="course._id">
+            {{ course.title }}
           </option>
         </select>
-        <input type="text" placeholder="Answer" v-model="testTitle">
-        <a href="#">Add Answer</a>
-
+        <div class="test__ans--list" v-if="test.questions">
+          <ul>
+            <li v-for="qns in test.questions">
+              {{ qns.question }}
+              <ul v-if="qns.answers">
+                <li v-for="ans in qns.answers" :class="{ correct: ans.correct }">{{ ans.answer }}</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <input type="text" placeholder="Question" v-model="testQuestion" v-on:blur="updateQuestion" v-if="showQuestionInput">
+        <div class="test__ans--set">
+          <label for="correct"><input type="checkbox" name="correct" v-model="testAnswerRight">Correct answer</label>
+          <input type="text" placeholder="Answer" v-model="testAnswer">
+        </div>
+        <div class="test__btn--wr">
+          <a href="#" @click.prevent="addAnswer">Add Answer</a>
+          <a href="#" @click.prevent="addQuestion">Add Question</a>
+        </div>
       </form>
+      <a href="#" class="btn-primary" @click.prevent="postTest">Pay & Publish</a>
     </div>
   </section>
 </template>
 
 <script>
+  import { generate } from 'shortid';
+  import _ from 'lodash';
   import PageBanner from '~/components/pageBanner.vue';
 
   export default {
     components: {
       PageBanner
     },
+    middleware: 'auth',
     data: () => ({
       course: 'placeholder',
-      options: [{
-        text: 'Learning C++',
-        value: 'laerning_c'
-      }, {
-        text: 'Visual Studio',
-        value: 'v_s'
-      }, {
-        text: 'Python',
-        value: 'python'
-      }]
-    })
+      courses: {},
+      testAnswer: '',
+      testAnswerRight: false,
+      testQuestion: '',
+      showQuestionInput: true,
+      currentMark: null,
+      test: {
+        title: '',
+        course: 'placeholder',
+        questions: []
+      }
+    }),
+    mounted() {
+      this.myCourses();
+    },
+    methods: {
+      updateQuestion() {
+        const id = generate();
+        this.test.questions.push({
+          _mark: id,
+          question: this.testQuestion,
+          answers: []
+        });
+        this.currentMark = id;
+        this.showQuestionInput = false;
+        this.testQuestion = '';
+      },
+      addAnswer() {
+        const record = _.find(this.test.questions, {
+          _mark: this.currentMark
+        });
+        record.answers.push({
+          answer: this.testAnswer,
+          correct: this.testAnswerRight
+        });
+        this.testAnswer = '';
+        this.testAnswerRight = false;
+      },
+      addQuestion() {
+        this.currentMark = '';
+        this.showQuestionInput = true;
+      },
+      async postTest() {
+        try {
+          const { data } = await this.$axios.$post('/api/course/test', this.test);
+          this.$store.commit('paymentToggle');
+        } catch (e) {
+          console.log(e);
+        }
+      },
+      async myCourses() {
+        try {
+          const { data } = await this.$axios.$get('/api/user/course/author');
+          this.courses = data.course.authorCourse;
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
   };
 </script>
 
@@ -82,6 +151,17 @@
         a {
           text-decoration: none;
           text-align: center;
+          display: inline-block;
+          w: 49%;
+          m: * 1%;
+
+          &:first-child {
+            ml: 0;
+          }
+
+          &:last-child {
+            mr: 0;
+          }
 
           &:hover {
             c: map(colors, primary);
@@ -108,5 +188,30 @@
         }
       }
     }
+  }
+
+  .test__ans--set {
+    w: 100%;
+    bg: #FDFDFE;
+    p: 2rem;
+    c: #757575;
+    m: 1.6rem *;
+    -webkit-box-shadow: 1px 1px 1px 2px rgba(242,242,242,1);
+    -moz-box-shadow: 1px 1px 1px 2px rgba(242,242,242,1);
+    box-shadow: 1px 1px 1px 2px rgba(242,242,242,1);
+
+    label {
+      p: 1.6rem *;
+      display: block;
+    }
+
+    input[type="checkbox"] {
+      mr: 0.6rem;
+    }
+  }
+
+  .btn-primary {
+    float: right;
+    m: 1rem;
   }
 </style>

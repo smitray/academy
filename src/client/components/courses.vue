@@ -2,7 +2,7 @@
   <div class="courses container container--wr container--ovh container--relc container--block">
     <h2>Popular courses</h2>
     <div class="courses--wr">
-      <div class="courses--3x">
+      <div class="courses--3x" v-for="course in courses">
         <div class="courses--imgWr">
           <img src="~/assets/img/mock-course.jpeg" alt="">
           <div class="courses--thumbBadge">
@@ -10,32 +10,8 @@
           </div>
         </div>
         <div class="courses--ctWr">
-          <h3><a href="/course/123">Best course name</a></h3>
-          <p><span class="left">£35</span><span class="right"><i class="icon-users"></i>35</span></p>
-        </div>
-      </div>
-      <div class="courses--3x">
-        <div class="courses--imgWr">
-          <img src="~/assets/img/mock-course.jpeg" alt="">
-          <div class="courses--thumbBadge">
-            <p>Top courses</p>
-          </div>
-        </div>
-        <div class="courses--ctWr">
-          <h3><a href="#">Best course name</a></h3>
-          <p><span class="left">£35</span><span class="right"><i class="icon-users"></i>35</span></p>
-        </div>
-      </div>
-      <div class="courses--3x">
-        <div class="courses--imgWr">
-          <img src="~/assets/img/mock-course.jpeg" alt="">
-          <div class="courses--thumbBadge">
-            <p>Top courses</p>
-          </div>
-        </div>
-        <div class="courses--ctWr">
-          <h3><a href="#">Best course name</a></h3>
-          <p><span class="left">£35</span><span class="right"><i class="icon-users"></i>35</span></p>
+          <h3><a :href="`/course/${course._id}`">{{ course.title }}</a></h3>
+          <p><span class="left">£{{ course.price }}</span><span class="right"><i class="icon-users"></i>35</span></p>
         </div>
       </div>
     </div>
@@ -44,7 +20,7 @@
 
 <script>
   export default {
-
+    props: ['courses']
   };
 </script>
 
