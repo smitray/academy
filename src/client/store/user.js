@@ -38,7 +38,6 @@ export const mutations = {
 export const actions = {
   async userDetails({ commit, state }) {
     if (state.token) {
-      console.log('hi');
       this.$axios.setHeader('Authorization', state.token);
     }
     try {

@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="courses--ctWr">
-          <h3><a :href="`/course/${course._id}`">{{ course.title }}</a></h3>
+          <h3><router-link :to="{ name: 'course-id', params: { id: course._id } }">{{ course.title }}</router-link></h3>
           <p><span class="left">£{{ course.price }}</span><span class="right"><i class="icon-users"></i>35</span></p>
         </div>
       </div>
