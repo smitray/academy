@@ -18,17 +18,16 @@
         </nav>
         <nav class="footer__naviGAtion--listItems">
           <ul>
-            <li><router-link :to="{ name: 'index' }">Home</router-link></li>
-            <li><router-link :to="{ name: 'about' }">About Us</router-link></li>
-            <li><router-link :to="{ name: 'course' }">Courses</router-link></li>
-            <li><router-link :to="{ name: 'instructor' }">Become an instructor</router-link></li>
-            <li><router-link :to="{ name: 'contact' }">Contact Us</router-link></li>
+            <li><router-link :to="{ name: 'index' }">Terms & COnditions</router-link></li>
+            <li><router-link :to="{ name: 'about' }">Privacy Policy</router-link></li>
+            <li><router-link :to="{ name: 'course' }">Payment Policy</router-link></li>
+            <li><router-link :to="{ name: 'instructor' }">Refund Policy</router-link></li>
           </ul>
         </nav>
       </div>
       <div class="footer__subCRibe">
-        <p>Stay informed with our all new courses</p>
-        <form action="#"><input type="email" placeholder="EMAIL HERE"><input type="submit" value="SUBCRIBE"></form>
+        <p>Stay connected and updated with us</p>
+        <!-- <form action="#"><input type="email" placeholder="EMAIL HERE"><input type="submit" value="SUBCRIBE"></form> -->
         <p class="footer__subCRibe--follow">
           follow us:
           <a href="#" class="icon-facebook-squared"></a>
