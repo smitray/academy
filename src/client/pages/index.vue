@@ -33,7 +33,7 @@
     </div>
     <!-- Intor Badge ind page end -->
     <!-- Popular courses -->
-    <my-courses/>
+    <!-- <my-courses/> -->
     <!-- Popular courses end -->
     <!-- About us block -->
     <div class="ind__about container container--rel container--full">

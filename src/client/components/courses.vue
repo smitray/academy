@@ -45,7 +45,7 @@
 
     &--3x {
       float: left;
-      m: * 0.8%;
+      m: * 0.8% 1rem;
       w: 32.26%;
       -webkit-box-shadow: 0px 2px 8px 1px rgba(0,0,0,0.11);
       -moz-box-shadow: 0px 2px 8px 1px rgba(0,0,0,0.11);

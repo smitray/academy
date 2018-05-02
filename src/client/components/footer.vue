@@ -18,7 +18,7 @@
         </nav>
         <nav class="footer__naviGAtion--listItems">
           <ul>
-            <li><router-link :to="{ name: 'index' }">Terms & COnditions</router-link></li>
+            <li><router-link :to="{ name: 'index' }">Terms & Conditions</router-link></li>
             <li><router-link :to="{ name: 'about' }">Privacy Policy</router-link></li>
             <li><router-link :to="{ name: 'course' }">Payment Policy</router-link></li>
             <li><router-link :to="{ name: 'instructor' }">Refund Policy</router-link></li>
