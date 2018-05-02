@@ -1,15 +1,10 @@
-import jsCookie from 'cookie';
-
-export default ({ $axios, store, req }) => {
-  let token;
+export default ({ $axios, store }) => {
   if (process.server) {
-    const cookie = jsCookie.parse(req.headers.cookie);
-    token = cookie.token; //eslint-disable-line
-  } else {
-    token = store.state.user.token; //eslint-disable-line
+    return;
   }
 
   $axios.interceptors.request.use((request) => {
+    const { token } = store.state.user;
     if (token) {
       request.headers.common.Authorization = token;
     }

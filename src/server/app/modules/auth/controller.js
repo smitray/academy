@@ -361,6 +361,30 @@ const logMeOut = async (ctx) => {
   };
 };
 
+const getMembers = async (ctx) => {
+  try {
+    record = await userCrud.get({
+      qr: {
+        acc_type: ctx.params.type
+      },
+      select: 'username name email authorCourse studentCourse'
+    });
+  } catch (e) {
+    ctx.throw(404, {
+      success: 0,
+      message: e.message
+    });
+  } finally {
+    ctx.body = {
+      success: 1,
+      data: {
+        users: record
+      },
+      message: 'Users fetched'
+    };
+  }
+};
+
 export {
   authLocal,
   authSocial,
@@ -370,5 +394,6 @@ export {
   deleteMe,
   logMeOut,
   getMyCourseAuthor,
-  getMyCourseStudent
+  getMyCourseStudent,
+  getMembers
 };

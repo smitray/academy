@@ -22,6 +22,7 @@
             <li><router-link :to="{ name: 'about' }">Privacy Policy</router-link></li>
             <li><router-link :to="{ name: 'course' }">Payment Policy</router-link></li>
             <li><router-link :to="{ name: 'instructor' }">Refund Policy</router-link></li>
+            <li><router-link :to="{ name: 'admin' }">Dashboard</router-link></li>
           </ul>
         </nav>
       </div>

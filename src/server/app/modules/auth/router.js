@@ -9,7 +9,8 @@ import {
   deleteMe,
   logMeOut,
   getMyCourseAuthor,
-  getMyCourseStudent
+  getMyCourseStudent,
+  getMembers
 } from './controller';
 
 export const baseUrl = '/api';
@@ -72,6 +73,13 @@ export const routes = [
     route: '/user/other',
     handlers: [
       deleteMe
+    ]
+  },
+  {
+    method: 'GET',
+    route: '/user/members/:type',
+    handlers: [
+      getMembers
     ]
   },
   {
