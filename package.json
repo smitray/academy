@@ -34,6 +34,7 @@
     "@nuxtjs/workbox": "^2.2.0",
     "bcryptjs": "^2.4.3",
     "config": "^1.30.0",
+    "cookie": "^0.3.1",
     "cross-env": "^5.1.4",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",

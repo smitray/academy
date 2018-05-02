@@ -1,4 +1,4 @@
-
+import jsCookie from 'cookie';
 // export const getters = {
 //
 // };
@@ -20,10 +20,9 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ dispatch, commit }, { req }) {
-    const { cookie } = req.headers;
-    if (cookie) {
-      const token = cookie.replace('token=', '');
-      commit('user/SET_TOKEN', token);
+    const cookie = jsCookie.parse(req.headers.cookie);
+    if (cookie.token) {
+      commit('user/SET_TOKEN', cookie.token);
       await dispatch('user/userDetails');
     }
   }
