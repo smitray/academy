@@ -26,10 +26,9 @@
         </nav>
       </div>
       <div class="footer__subCRibe">
-        <p>Stay connected and updated with us</p>
+        <p>Connect with us on social media</p>
         <!-- <form action="#"><input type="email" placeholder="EMAIL HERE"><input type="submit" value="SUBCRIBE"></form> -->
         <p class="footer__subCRibe--follow">
-          follow us:
           <a href="#" class="icon-facebook-squared"></a>
           <a href="#" class="icon-twitter"></a>
           <a href="#" class="icon-instagram"></a>
