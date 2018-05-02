@@ -19,12 +19,12 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit({ dispatch, commit }, { req }) {
+  nuxtServerInit({ dispatch, commit }, { req }) {
     const cookie = jsCookie.parse(req.headers.cookie);
     if (cookie.token) {
       commit('user/SET_TOKEN', cookie.token);
-      await dispatch('user/userDetails');
     }
+    return Promise.resolve(dispatch('user/userDetails'));
   }
 };
 

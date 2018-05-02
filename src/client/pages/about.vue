@@ -13,7 +13,7 @@
     </section>
     <section class="about__content container container--wr container--ovh container--relc container--block">
       <div class="about__content--2x">
-        <h2>industrial courses</h2>
+        <h2>Who we are</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit amet quas perferendis quaerat labore, iusto mollitia asperiores ex, quidem magnam temporibus rem distinctio quis modi nesciunt aperiam corrupti repudiandae voluptas.</p>
         <p>Inventore, consequatur, accusamus. Amet eaque eveniet quo numquam asperiores enim, laboriosam iure nemo explicabo laudantium voluptatem autem eius, velit atque placeat aliquid totam iusto dolorum eum aut. Architecto, aspernatur, ea.</p>
         <p>Sint tempora reprehenderit doloribus, maxime non explicabo expedita corporis dignissimos est odit asperiores quae optio deleniti quibusdam quisquam a sequi soluta animi voluptatem temporibus laudantium. Quo illo hic rerum iure?</p>
@@ -38,6 +38,8 @@
     bg: #F5F6FA;
 
     &__badge {
+      display: none;
+
       &--3x {
         float: left;
         width: 33.33%;
