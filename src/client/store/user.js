@@ -1,9 +1,19 @@
 export const getters = {
-  isInstructor: state => (state.user.acc_type === 'instructor'),
+  isInstructor: (state) => {
+    if (state.user) {
+      if (state.user.acc_type === 'instructor') {
+        return true;
+      }
+    }
+    return false;
+  },
   isAuthenticated: state => (state.isAuthenticated),
   welcomeUser: (state) => {
-    const firstName = state.user.name ? state.user.name.split(' ') : 'John Doe';
-    return firstName[0];
+    if (state.user) {
+      const firstName = state.user.name ? state.user.name.split(' ') : 'John Doe';
+      return firstName[0];
+    }
+    return false;
   },
   myToken: state => state.token
 };
@@ -28,6 +38,7 @@ export const mutations = {
 export const actions = {
   async userDetails({ commit, state }) {
     if (state.token) {
+      console.log('hi');
       this.$axios.setHeader('Authorization', state.token);
     }
     try {

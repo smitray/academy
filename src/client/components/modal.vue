@@ -58,7 +58,7 @@
           signup: this.signup
         });
         if (user.success) {
-          this.$store.commit('user/SET_TOKEN', user.data.token);
+          await this.$store.commit('user/SET_TOKEN', user.data.token);
           await this.$store.dispatch('user/userDetails');
           if (!this.$store.state.user.coursePage) {
             this.$router.push({

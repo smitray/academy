@@ -41,7 +41,8 @@
             <tr v-for="course in courses.studentCourse">
               <td><a :href="`/course/${course._id}`">{{ course.title }}</a></td>
               <td>{{ new Date(course.createdAt).toDateString() }}</td>
-              <td><a :href="`/auth/test/${course.courseTest._id}`">{{ course.courseTest.title }}</a></td>
+              <td v-if="course.courseTest"><a :href="`/auth/test/${course.courseTest._id}`">{{ course.courseTest.title }}</a></td>
+              <td v-else>There aren't any test at the moment</td>
             </tr>
           </tbody>
         </table>
