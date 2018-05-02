@@ -21,6 +21,7 @@
             <form @submit.prevent="authorize">
               <input type="text" name v-model="username" placeholder="Your email or username">
               <input type="password" v-model="password" placeholder="Your password">
+              <a href="#" @click.prevent="noAccount">Don't have an account?</a>
               <input type="submit" value="Login" class="btn-primary">
             </form>
           </div>
@@ -44,6 +45,10 @@
       }
     },
     methods: {
+      noAccount() {
+        this.$store.commit('loginToggle');
+        this.$store.commit('signupToggle');
+      },
       async authorize() {
         const user = await this.$axios.$post('/api/auth/local', {
           name: this.name,
@@ -53,10 +58,13 @@
           signup: this.signup
         });
         if (user.success) {
-          await this.$store.dispatch('user/userDetails', user.data.token);
-          this.$router.push({
-            name: 'auth'
-          });
+          this.$store.commit('user/SET_TOKEN', user.data.token);
+          await this.$store.dispatch('user/userDetails');
+          if (!this.$store.state.user.coursePage) {
+            this.$router.push({
+              name: 'auth'
+            });
+          }
           if (this.signup) {
             this.$store.commit('signupToggle');
           } else {

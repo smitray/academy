@@ -258,10 +258,15 @@ const getMyCourseStudent = async (ctx) => {
       qr: {
         _id: ctx.state.user.uid
       },
-      select: 'authorCourse',
+      select: 'studentCourse',
       populate: [{
         path: 'studentCourse',
-        model: 'courseModel'
+        model: 'courseModel',
+        select: 'title createdAt courseTest',
+        populate: [{
+          path: 'courseTest',
+          model: 'testModel'
+        }]
       }]
     });
   } catch (e) {

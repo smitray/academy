@@ -105,6 +105,25 @@ class CourseService extends Crud {
       });
     });
   }
+
+  async enrollStudent(options) {
+    const record = await this.single(options.params);
+    record.students.push(options.body.uid);
+    const user = await this.userCrud.single({
+      qr: {
+        _id: options.body.uid
+      }
+    });
+    user.studentCourse.push(record._id);
+    await user.save();
+    return new Promise((resolve, reject) => {
+      record.save().then((result) => {
+        resolve(result);
+      }).catch((e) => {
+        reject(e);
+      });
+    });
+  }
 }
 
 const courseCrud = new CourseService(courseModel);

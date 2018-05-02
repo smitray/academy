@@ -84,5 +84,5 @@ module.exports = {
     description: 'One of the best learning website',
     theme_color: '#000'
   },
-  plugins: []
+  plugins: ['~/plugins/axios']
 };

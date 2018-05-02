@@ -34,7 +34,16 @@
       Card
     },
     methods: {
-      makePayment() {
+      async makePayment() {
+        if (this.$store.state.payment.courseId) {
+          try {
+            await this.$axios.$post('/api/course/enroll', {
+              crId: this.$store.state.payment.courseId
+            });
+          } catch (e) {
+            console.log(e);
+          }
+        }
         this.$router.push({
           name: 'auth'
         });

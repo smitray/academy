@@ -34,40 +34,14 @@
             <tr>
               <th>Course name</th>
               <th>Enroll date</th>
-              <th>progress</th>
               <th>action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Item 1</td>
-              <td>Item 2</td>
-              <td>Item 3</td>
-              <td>Item 4</td>
-            </tr>
-            <tr>
-              <td>Item 1</td>
-              <td>Item 2</td>
-              <td>Item 3</td>
-              <td>Item 4</td>
-            </tr>
-            <tr>
-              <td>Item 1</td>
-              <td>Item 2</td>
-              <td>Item 3</td>
-              <td>Item 4</td>
-            </tr>
-            <tr>
-              <td>Item 1</td>
-              <td>Item 2</td>
-              <td>Item 3</td>
-              <td>Item 4</td>
-            </tr>
-            <tr>
-              <td>Item 1</td>
-              <td>Item 2</td>
-              <td>Item 3</td>
-              <td>Item 4</td>
+            <tr v-for="course in courses.studentCourse">
+              <td><a :href="`/course/${course._id}`">{{ course.title }}</a></td>
+              <td>{{ new Date(course.createdAt).toDateString() }}</td>
+              <td><a :href="`/auth/test/${course.courseTest._id}`">{{ course.courseTest.title }}</a></td>
             </tr>
           </tbody>
         </table>
@@ -103,9 +77,9 @@
         try {
           let url;
           if (this.isInstructor) {
-            url = '/api/user/course/author'
+            url = '/api/user/course/author';
           } else {
-            url = '/api/user/course/student'
+            url = '/api/user/course/student';
           }
           const { data } = await this.$axios.$get(url);
           this.courses = data.course;

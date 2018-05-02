@@ -14,25 +14,14 @@
   import PageBanner from '~/components/pageBanner.vue';
 
   export default {
-    data: () => ({
-      courses: {}
-    }),
     components: {
       MyCourses,
       PageBanner
     },
-    mounted() {
-      this.allCourse();
-    },
-    methods: {
-      async allCourse() {
-        try {
-          const { data } = await this.$axios.$get('/api/course');
-          this.courses = data.courses;
-        } catch (e) {
-          console.log(e);
-        }
-      }
+    async asyncData({ app }) {
+      const { data } = await app.$axios.$get('/api/course');
+      const { courses } = data;
+      return { courses };
     }
   };
 </script>

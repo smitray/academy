@@ -2,37 +2,32 @@
   <section class="container container--full container--wr container--rel container--ovh course">
     <!-- Page banner -->
     <page-banner>
-      Courses
+      {{ data.course.title }}
     </page-banner>
     <!-- Page banner end -->
     <section class="container container--block container--wr container--rel container--ovh">
       <div class="container container--full container--wr container--rel container--ovh course__info">
         <div class="course__info--3x">
-          <p>Author: </p>
+          <p>Author: {{ data.course.author.name }}</p>
         </div>
         <div class="course__info--3x">
-          <p>Published on: </p>
+          <p>Category: {{ data.course.category | fineTune }}</p>
         </div>
         <div class="course__info--3x">
-          <p>Enrolled: </p>
+          <p>Enrolled: {{ data.course.students ? data.course.students.length : 0 }}</p>
         </div>
       </div>
       <div class="container container--full container--wr container--rel container--ovh course__block">
-        <div class="course__block--left">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore maxime, tempore, voluptate corporis nostrum, inventore veniam fuga perspiciatis nulla aperiam unde, sequi tenetur ipsa reiciendis modi eos optio eum quam sapiente asperiores. Neque corporis iure aut eos eius. Suscipit ad ratione ex quos sunt, quae perferendis, reprehenderit quidem voluptates qui.</p>
-          <p>Quam rerum similique alias ex nobis ipsum enim quos cum commodi placeat dolores consectetur quo earum dolorum asperiores hic quis repudiandae impedit, repellat architecto et. Odio recusandae non molestiae? Accusamus et totam cumque, architecto, labore praesentium ratione nisi, accusantium deserunt impedit necessitatibus culpa quae excepturi rerum delectus laboriosam ipsum dolores.</p>
+        <div class="course__block--left" v-html="data.course.description">
+
         </div>
         <div class="course__block--right">
-          <p>$55</p>
-          <a href="" class="btn-primary">Enroll now</a>
+          <p>{{ data.course.price }} GBP</p>
+          <a href="#" class="btn-primary" @click.prevent="enrollMe">Enroll now</a>
           <ul>
             <li>Includes</li>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-            <li>Item 4</li>
-            <li>Item 5</li>
-            <li>Item 6</li>
+            <li v-for="lecture in data.course.lecture" v-if="data.course.lecture">{{ lecture.title }}</li>
+            <li v-else>There are no sub items</li>
           </ul>
         </div>
       </div>
@@ -41,11 +36,36 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'; //eslint-disable-line
   import PageBanner from '~/components/pageBanner.vue';
 
   export default {
+    async asyncData({ app, route }) {
+      const { data } = await app.$axios.$get(`/api/course/${route.params.id}`);
+      return { data };
+    },
     components: {
       PageBanner
+    },
+    filters: {
+      fineTune: string => string.replace(/-/g, ' ')
+    },
+    computed: {
+      ...mapGetters('user', [
+        'isAuthenticated'
+      ])
+    },
+    methods: {
+      async enrollMe() {
+        if (!this.isAuthenticated) {
+          this.$store.commit('user/SET_PAGE');
+          this.$store.commit('loginToggle');
+        } else {
+          this.$store.commit('payment/SET_AMOUNT', this.data.course.price);
+          this.$store.commit('payment/SET_COURSEID', this.data.course._id);
+          this.$store.commit('paymentToggle');
+        }
+      }
     }
   };
 </script>

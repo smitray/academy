@@ -26,7 +26,20 @@ const courseAll = async (ctx) => {
 
 const courseSingle = async (ctx) => {
   try {
-    course = await courseCrud.single({ _id: ctx.params.id });
+    course = await courseCrud.single({
+      qr: {
+        _id: ctx.params.id
+      },
+      select: 'title category description lecture author price students',
+      populate: [{
+        path: 'lecture',
+        model: 'lectureModel'
+      }, {
+        path: 'author',
+        model: 'authModel',
+        select: 'name'
+      }]
+    });
   } catch (e) {
     ctx.throw(404, {
       success: 0,
@@ -34,7 +47,11 @@ const courseSingle = async (ctx) => {
     });
   } finally {
     ctx.body = {
-      body: course
+      success: 1,
+      data: {
+        course
+      },
+      message: 'Course found'
     };
   }
 };
@@ -191,6 +208,31 @@ const createTest = async (ctx) => {
   }
 };
 
+const enrollStudent = async (ctx) => {
+  try {
+    await courseCrud.enrollStudent({
+      params: {
+        qr: {
+          _id: ctx.request.body.crId
+        }
+      },
+      body: {
+        uid: ctx.state.user.uid
+      }
+    });
+  } catch (e) {
+    ctx.throw(422, {
+      success: 0,
+      message: e.message
+    });
+  } finally {
+    ctx.body = {
+      success: 1,
+      message: 'Student enrolled'
+    };
+  }
+};
+
 export {
   courseAll,
   courseSingle,
@@ -199,5 +241,6 @@ export {
   courseDelete,
   lectureCreate,
   contentCreate,
-  createTest
+  createTest,
+  enrollStudent
 };

@@ -2,9 +2,10 @@ export const getters = {
   isInstructor: state => (state.user.acc_type === 'instructor'),
   isAuthenticated: state => (state.isAuthenticated),
   welcomeUser: (state) => {
-    const firstName = state.user.name.split(' ');
+    const firstName = state.user.name ? state.user.name.split(' ') : 'John Doe';
     return firstName[0];
-  }
+  },
+  myToken: state => state.token
 };
 
 export const mutations = {
@@ -15,13 +16,21 @@ export const mutations = {
   UNSET_USER: (state) => {
     state.user = {};
     state.isAuthenticated = false;
+  },
+  SET_PAGE: (state) => {
+    state.coursePage = !state.coursePage;
+  },
+  SET_TOKEN: (state, token) => {
+    state.token = token;
   }
 };
 
 export const actions = {
-  async userDetails({ commit }, token) {
+  async userDetails({ commit, state }) {
+    if (state.token) {
+      this.$axios.setHeader('Authorization', state.token);
+    }
     try {
-      this.$axios.setHeader('Authorization', token);
       const { data } = await this.$axios.$get('/api/user');
       commit('SET_USER', data.user);
     } catch (e) {
@@ -45,5 +54,7 @@ export const actions = {
 
 export const state = () => ({
   user: {},
-  isAuthenticated: false
+  isAuthenticated: false,
+  coursePage: false,
+  token: null
 });

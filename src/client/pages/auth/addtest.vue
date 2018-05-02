@@ -68,6 +68,11 @@
     mounted() {
       this.myCourses();
     },
+    async asyncData({ app }) {
+      const { data } = await app.$axios.$get('/api/user/course/author');
+      const courses = data.course.authorCourse;
+      return { courses };
+    },
     methods: {
       updateQuestion() {
         const id = generate();
@@ -97,16 +102,10 @@
       },
       async postTest() {
         try {
-          const { data } = await this.$axios.$post('/api/course/test', this.test);
-          this.$store.commit('paymentToggle');
-        } catch (e) {
-          console.log(e);
-        }
-      },
-      async myCourses() {
-        try {
-          const { data } = await this.$axios.$get('/api/user/course/author');
-          this.courses = data.course.authorCourse;
+          await this.$axios.$post('/api/course/test', this.test);
+          this.$router.push({
+            name: 'auth'
+          });
         } catch (e) {
           console.log(e);
         }
