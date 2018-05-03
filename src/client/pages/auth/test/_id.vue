@@ -11,12 +11,13 @@
       <div class="test__result">
         <p><span>Correct answers: {{ correct }}</span><span>Wrong answers: {{ wrong }}</span></p>
       </div>
-      <div class="test__block--wr">
+      <div class="test__block--wr container--ovh">
         <div class="test__block" v-for="(qnsbl, index) in questions.questions">
           <p>{{ qnsbl.question }}</p>
           <label for="ans" v-for="ans in qnsbl.answers"><input type="radio" :name="index" :value="ans.correct" @click="scoreBuild(ans.correct)">{{ ans.answer }}</label>
         </div>
       </div>
+      <div class="test__submit--wr"><a href="#" class="btn-primary">Submit test</a></div>
     </div>
   </section>
 </template>
@@ -108,6 +109,17 @@
         input[type="radio"] {
           mr: 0.7rem;
         }
+      }
+    }
+
+    .test__submit--wr {
+      m: 2rem *;
+      overflow: hidden;
+      w: 100%;
+
+      a {
+        float: right;
+        m: 1rem;
       }
     }
   }
