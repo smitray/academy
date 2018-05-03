@@ -23,8 +23,7 @@
         </div>
         <div class="course__block--right">
           <p>{{ data.course.price }} GBP</p>
-          <a href="#" class="btn-primary" @click.prevent="enrollMe" >Enroll now</a>
-          
+          <a href="#" class="btn-primary" @click.prevent="enrollMe" v-if="!shouldEnroll">Enroll now</a>
           <ul>
             <li>Includes</li>
             <li v-for="lecture in data.course.lecture" v-if="data.course.lecture">{{ lecture.title }}</li>
@@ -37,10 +36,14 @@
 </template>
 
 <script>
+  import _ from 'lodash';
   import { mapGetters } from 'vuex'; //eslint-disable-line
   import PageBanner from '~/components/pageBanner.vue';
 
   export default {
+    data: () => ({
+      shouldEnroll: false
+    }),
     async asyncData({ app, route }) {
       const { data } = await app.$axios.$get(`/api/course/${route.params.id}`);
       return { data };
@@ -56,6 +59,9 @@
         'isAuthenticated'
       ])
     },
+    mounted() {
+      this.checkEnroll();
+    },
     methods: {
       async enrollMe() {
         try {
@@ -67,6 +73,11 @@
           });
         } catch (e) {
           console.log(e);
+        }
+      },
+      checkEnroll() {
+        if (this.$store.state.user.user) {
+          this.shouldEnroll = _.includes(this.$store.state.user.user.studentCourse, this.$route.params.id); // eslint-disable-line
         }
       }
     }
