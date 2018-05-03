@@ -33,7 +33,7 @@
     </ul>
     <h4>tool manager</h4>
     <ul>
-      <li><a href="#">training academy</a></li>
+      <li><router-link :to="{ name: 'admin-tool' }">training academy</router-link></li>
     </ul>
   </nav>
 </template>

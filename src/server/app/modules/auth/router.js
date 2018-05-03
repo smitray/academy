@@ -70,7 +70,7 @@ export const routes = [
   },
   {
     method: 'DELETE',
-    route: '/user/other',
+    route: '/user/:id',
     handlers: [
       deleteMe
     ]

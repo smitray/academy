@@ -91,6 +91,7 @@
       takeTest(id) {
         this.$store.commit('payment/SET_COURSEID', id);
         this.$store.commit('payment/SET_AMOUNT', 10);
+        this.$store.commit('payment/SET_BTNCAP', 'Pay & Attend test');
         this.$store.commit('paymentToggle');
       }
     }

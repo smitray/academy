@@ -12,7 +12,7 @@
               :options='stripeOptions'
               @change='complete = $event.complete'
             />
-            <a href="#" class="btn-primary" @click.prevent="makePayment">Pay & Publish</a>
+            <a href="#" class="btn-primary" @click.prevent="makePayment">{{ $store.state.payment.btnCap }}</a>
           </div>
         </div>
       </div>

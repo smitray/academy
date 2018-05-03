@@ -8,14 +8,16 @@
           <th>username</th>
           <th>Email</th>
           <th>Course published</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in users">
+        <tr v-for="user in users" v-if="users">
           <td>{{ user.name }}</td>
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.authorCourse ? user.authorCourse.length : 0 }}</td>
+          <td><a href="#" @click.prevent="deleteUser(user._id)"><i class="icon-cancel"></i></a></td>
         </tr>
       </tbody>
     </table>
@@ -24,11 +26,25 @@
 
 <script>
   export default {
+    data: () => ({
+      users: {}
+    }),
     layout: 'admin',
     async asyncData({ app }) {
       const { data } = await app.$axios.$get('/api/user/members/instructor');
       const { users } = data;
       return { users };
+    },
+    methods: {
+      async deleteUser(id) {
+        try {
+          const { data } = await this.$axios.$delete(`/api/user/${id}`);
+          this.users.splice(this.users.findIndex(obj => obj._id === id), 1);
+          console.log(data);
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   };
 </script>

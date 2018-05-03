@@ -23,7 +23,8 @@
         </div>
         <div class="course__block--right">
           <p>{{ data.course.price }} GBP</p>
-          <a href="#" class="btn-primary" @click.prevent="enrollMe">Enroll now</a>
+          <a href="#" class="btn-primary" @click.prevent="enrollMe" >Enroll now</a>
+          
           <ul>
             <li>Includes</li>
             <li v-for="lecture in data.course.lecture" v-if="data.course.lecture">{{ lecture.title }}</li>

@@ -213,7 +213,7 @@ const getMe = async (ctx) => {
       qr: {
         _id: ctx.state.user.uid
       },
-      select: 'username email name acc_type'
+      select: 'username email name acc_type studentCourse'
     });
   } catch (e) {
     ctx.throw(404, e.message);
@@ -336,7 +336,7 @@ const deleteMe = async (ctx) => {
     record = await userCrud.delete({
       params: {
         qr: {
-          _id: ctx.state.user.uid
+          _id: ctx.params.id
         }
       }
     });

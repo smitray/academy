@@ -9,6 +9,9 @@ export const mutations = {
   },
   SET_COURSEID: (state, id) => {
     state.courseId = id;
+  },
+  SET_BTNCAP: (state, cap) => {
+    state.btnCap = cap;
   }
 };
 
@@ -18,5 +21,6 @@ export const actions = {
 
 export const state = () => ({
   amount: 20,
-  courseId: null
+  courseId: null,
+  btnCap: 'Pay & Publish'
 });

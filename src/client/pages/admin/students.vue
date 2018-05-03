@@ -8,6 +8,7 @@
           <th>username</th>
           <th>Email</th>
           <th>Course enrolled</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.studentCourse ? user.studentCourse.length : 0 }}</td>
+          <td><a href="#" @click.prevent="deleteUser(user._id)"><i class="icon-cancel"></i></a></td>
         </tr>
       </tbody>
     </table>
@@ -29,6 +31,17 @@
       const { data } = await app.$axios.$get('/api/user/members/student');
       const { users } = data;
       return { users };
+    },
+    methods: {
+      async deleteUser(id) {
+        try {
+          const { data } = await this.$axios.$delete(`/api/user/${id}`);
+          this.users.splice(this.users.findIndex(obj => obj._id === id), 1);
+          console.log(data);
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   };
 </script>
