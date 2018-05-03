@@ -14,7 +14,7 @@
       <div class="test__block--wr container--ovh">
         <div class="test__block" v-for="(qnsbl, index) in questions.questions">
           <p>{{ qnsbl.question }}</p>
-          <label for="ans" v-for="ans in qnsbl.answers"><input type="radio" :name="index" :value="ans.correct" @click="scoreBuild(ans.correct)">{{ ans.answer }}</label>
+          <label for="ans" v-for="ans in qnsbl.answers"><input type="radio" :name="index" :value="ans.correct" @click="scoreBuild(ans.correct, index)" :disabled="disabled[index]">{{ ans.answer }}</label>
         </div>
       </div>
       <div class="test__submit--wr"><a href="#" class="btn-primary">Submit test</a></div>
@@ -32,7 +32,8 @@
     data: () => ({
       questions: {},
       correct: 0,
-      wrong: 0
+      wrong: 0,
+      disabled: {}
     }),
     mounted() {
       this.questionFetch();
@@ -46,12 +47,13 @@
           console.log(e);
         }
       },
-      scoreBuild(ans) {
+      scoreBuild(ans, point) {
         if (ans === 'true') {
           this.correct += 1;
         } else {
           this.wrong += 1;
         }
+        this.disabled[point] = true;
       }
     }
   };
