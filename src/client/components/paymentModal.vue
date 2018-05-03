@@ -35,18 +35,18 @@
     },
     methods: {
       async makePayment() {
-        if (this.$store.state.payment.courseId) {
-          try {
-            await this.$axios.$post('/api/course/enroll', {
-              crId: this.$store.state.payment.courseId
-            });
-          } catch (e) {
-            console.log(e);
-          }
-        }
-        this.$router.push({
+        let link = {
           name: 'auth'
-        });
+        };
+        if (this.$store.state.payment.courseId) {
+          link = {
+            name: 'auth-test-id',
+            params: {
+              id: this.$store.state.payment.courseId
+            }
+          };
+        }
+        this.$router.push(link);
         this.$store.commit('paymentToggle');
       }
     }

@@ -9,7 +9,8 @@ import {
   lectureCreate,
   contentCreate,
   createTest,
-  enrollStudent
+  enrollStudent,
+  getCourseTest
 } from './controller';
 
 
@@ -21,6 +22,13 @@ export const routes = [
     route: '/',
     handlers: [
       courseAll
+    ]
+  },
+  {
+    method: 'GET',
+    route: '/test/:id',
+    handlers: [
+      getCourseTest
     ]
   },
   {

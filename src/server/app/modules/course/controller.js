@@ -1,4 +1,5 @@
 import courseCrud from './course.service';
+import { testCrud } from './coursetest.model';
 
 
 let courses;
@@ -233,6 +234,29 @@ const enrollStudent = async (ctx) => {
   }
 };
 
+const getCourseTest = async (ctx) => {
+  try {
+    course = await testCrud.single({
+      qr: {
+        _id: ctx.params.id
+      }
+    });
+  } catch (e) {
+    ctx.throw(404, {
+      success: 0,
+      message: e.message
+    });
+  } finally {
+    ctx.body = {
+      success: 1,
+      data: {
+        test: course
+      },
+      message: 'Course found'
+    };
+  }
+};
+
 export {
   courseAll,
   courseSingle,
@@ -242,5 +266,6 @@ export {
   lectureCreate,
   contentCreate,
   createTest,
-  enrollStudent
+  enrollStudent,
+  getCourseTest
 };

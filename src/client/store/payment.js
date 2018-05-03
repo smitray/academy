@@ -17,6 +17,6 @@ export const actions = {
 };
 
 export const state = () => ({
-  amount: 10,
+  amount: 20,
   courseId: null
 });

@@ -41,7 +41,7 @@
             <tr v-for="course in courses.studentCourse">
               <td><router-link :to="{ name: 'course-id', params: { id: course._id } }">{{ course.title }}</router-link></td>
               <td>{{ new Date(course.createdAt).toDateString() }}</td>
-              <td v-if="course.courseTest"><router-link :to="{ name: 'auth-test-id', params: { id: course.courseTest._id } }">{{ course.courseTest.title }}</router-link></td>
+              <td v-if="course.courseTest"><a href="#" @click.prevent="takeTest(course.courseTest._id)">{{ course.courseTest.title }}</a></td>
               <td v-else>There aren't any test at the moment</td>
             </tr>
           </tbody>
@@ -87,6 +87,11 @@
         } catch (e) {
           console.log(e);
         }
+      },
+      takeTest(id) {
+        this.$store.commit('payment/SET_COURSEID', id);
+        this.$store.commit('payment/SET_AMOUNT', 10);
+        this.$store.commit('paymentToggle');
       }
     }
   };

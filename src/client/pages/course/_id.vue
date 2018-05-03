@@ -57,13 +57,15 @@
     },
     methods: {
       async enrollMe() {
-        if (!this.isAuthenticated) {
-          this.$store.commit('user/SET_PAGE');
-          this.$store.commit('loginToggle');
-        } else {
-          this.$store.commit('payment/SET_AMOUNT', this.data.course.price);
-          this.$store.commit('payment/SET_COURSEID', this.data.course._id);
-          this.$store.commit('paymentToggle');
+        try {
+          await this.$axios.$post('/api/course/enroll', {
+            crId: this.data.course._id
+          });
+          this.$router.push({
+            name: 'auth'
+          });
+        } catch (e) {
+          console.log(e);
         }
       }
     }
