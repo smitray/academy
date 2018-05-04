@@ -30,6 +30,7 @@
       users: {}
     }),
     layout: 'admin',
+    middleware: 'auth',
     async asyncData({ app }) {
       const { data } = await app.$axios.$get('/api/user/members/instructor');
       const { users } = data;

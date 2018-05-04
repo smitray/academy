@@ -34,6 +34,7 @@
     <h4>tool manager</h4>
     <ul>
       <li><router-link :to="{ name: 'admin-tool' }">training academy</router-link></li>
+      <a href="#" @click.prevent="$store.dispatch('user/logout')">logout</a>
     </ul>
   </nav>
 </template>

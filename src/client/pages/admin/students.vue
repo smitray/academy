@@ -37,7 +37,6 @@
         try {
           const { data } = await this.$axios.$delete(`/api/user/${id}`);
           this.users.splice(this.users.findIndex(obj => obj._id === id), 1);
-          console.log(data);
         } catch (e) {
           console.log(e);
         }

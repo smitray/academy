@@ -10,7 +10,8 @@ import {
   contentCreate,
   createTest,
   enrollStudent,
-  getCourseTest
+  getCourseTest,
+  enrollRemove
 } from './controller';
 
 
@@ -91,6 +92,14 @@ export const routes = [
     handlers: [
       isAuthenticated,
       enrollStudent
+    ]
+  },
+  {
+    method: 'POST',
+    route: '/enroll/remove',
+    handlers: [
+      isAuthenticated,
+      enrollRemove
     ]
   }
 ];

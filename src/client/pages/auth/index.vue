@@ -16,6 +16,7 @@
               <th>Published on</th>
               <th>Category</th>
               <th>Price</th>
+              <th>Enrolled</th>
             </tr>
           </thead>
           <tbody>
@@ -24,6 +25,7 @@
               <td>{{ new Date(course.createdAt).toDateString() }}</td>
               <td>{{ course.category }}</td>
               <td>{{ course.price }}</td>
+              <td>{{ course.students ? course.students.length : 0 }}</td>
             </tr>
           </tbody>
         </table>
@@ -41,7 +43,7 @@
             <tr v-for="course in courses.studentCourse">
               <td><router-link :to="{ name: 'course-id', params: { id: course._id } }">{{ course.title }}</router-link></td>
               <td>{{ new Date(course.createdAt).toDateString() }}</td>
-              <td v-if="course.courseTest"><a href="#" @click.prevent="takeTest(course.courseTest._id)">{{ course.courseTest.title }}</a></td>
+              <td v-if="course.courseTest"><a href="#" @click.prevent="takeTest(course.courseTest._id)">{{ course.courseTest.title }}</a><a href="#" @click.prevent="deleteCourse(course._id)">Delete Course</a></td>
               <td v-else>There aren't any test at the moment</td>
             </tr>
           </tbody>
@@ -93,6 +95,16 @@
         this.$store.commit('payment/SET_AMOUNT', 10);
         this.$store.commit('payment/SET_BTNCAP', 'Pay & Attend test');
         this.$store.commit('paymentToggle');
+      },
+      async deleteCourse(crId) {
+        try {
+          await this.$axios.$post('/api/course/enroll/remove', {
+            crId
+          });
+          this.courses.splice(this.courses.findIndex(obj => obj._id === crId), 1);
+        } catch (e) {
+          console.log(e);
+        }
       }
     }
   };

@@ -64,6 +64,10 @@
             this.$router.push({
               name: 'auth'
             });
+          } else if (user.acc_type === 'admin') {
+            this.$router.push({
+              name: 'admin'
+            });
           }
           if (this.signup) {
             this.$store.commit('signupToggle');

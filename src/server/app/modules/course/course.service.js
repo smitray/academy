@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { Crud } from '@utl';
 
 import courseModel from './course.model';
@@ -18,6 +19,7 @@ class CourseService extends Crud {
     this.filesCrud = filesCrud;
     this.userCrud = userCrud;
     this.testCrud = testCrud;
+    this._ = _;
   }
 
   async createCourse(options) {
@@ -115,6 +117,26 @@ class CourseService extends Crud {
       }
     });
     user.studentCourse.push(record._id);
+    await user.save();
+    return new Promise((resolve, reject) => {
+      record.save().then((result) => {
+        resolve(result);
+      }).catch((e) => {
+        reject(e);
+      });
+    });
+  }
+
+  async removeEnroll(options) {
+    const record = await this.single(options.params);
+    this._.remove(record.studends, filter => filter === options.body.uid);
+    console.log(record);
+    const user = await this.userCrud.single({
+      qr: {
+        _id: options.body.uid
+      }
+    });
+    this._.remove(user.studentCourse, filter => filter === record._id);
     await user.save();
     return new Promise((resolve, reject) => {
       record.save().then((result) => {

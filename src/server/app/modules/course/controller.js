@@ -234,6 +234,31 @@ const enrollStudent = async (ctx) => {
   }
 };
 
+const enrollRemove = async (ctx) => {
+  try {
+    await courseCrud.removeEnroll({
+      params: {
+        qr: {
+          _id: ctx.request.body.crId
+        }
+      },
+      body: {
+        uid: ctx.state.user.uid
+      }
+    });
+  } catch (e) {
+    ctx.throw(422, {
+      success: 0,
+      message: e.message
+    });
+  } finally {
+    ctx.body = {
+      success: 1,
+      message: 'Course removed'
+    };
+  }
+};
+
 const getCourseTest = async (ctx) => {
   try {
     course = await testCrud.single({
@@ -267,5 +292,6 @@ export {
   contentCreate,
   createTest,
   enrollStudent,
+  enrollRemove,
   getCourseTest
 };
