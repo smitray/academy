@@ -33,6 +33,21 @@ export default class Crud {
     });
   }
 
+  singleUpdate(options) {
+    return new Promise((resolve, reject) => {
+      this.model.findOneAndUpdate(options ? options.qr : {}, options ? options.opt : {})
+        .select(options ? options.select ? options.select : {} : {}) //eslint-disable-line
+        .populate(options ? options.populate ? options.populate : '' : '') //eslint-disable-line
+        .exec()
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  }
+
   async put(options) {
     const record = await this.single(options.params);
     Object.assign(record, options.body);

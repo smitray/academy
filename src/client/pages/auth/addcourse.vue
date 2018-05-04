@@ -13,8 +13,8 @@
           <input type="text" placeholder="Title of course" v-model="courseTitle">
           <select v-model="category">
             <option value="placeholder" disabled>Choose category</option>
-            <option v-for="option in options" v-bind:value="option.value">
-              {{ option.text }}
+            <option v-for="opt in options" v-bind:value="$options.filters.makeVal(opt)">
+              {{ opt }}
             </option>
           </select>
           <textarea cols="30" rows="10" placeholder="Enter description" v-model="description" v-on:blur="addLecture"></textarea>
@@ -66,16 +66,40 @@
     middleware: 'auth',
     data: () => ({
       complete: false,
-      options: [{
-        text: 'Accounting',
-        value: 'accounting'
-      }, {
-        text: 'Agriculture',
-        value: 'agriculture'
-      }, {
-        text: 'Customer support',
-        value: 'customer-service'
-      }],
+      options: [
+        'Physics',
+        'Astronomy or other Space Science',
+        'Philosophy',
+        'Engineering',
+        'Math',
+        'History',
+        'Chemistry',
+        'Biology or other Life Science',
+        'Foreign language',
+        'Computer Science',
+        'Agriculture',
+        'Geology or other Earth Science',
+        'Architecture',
+        'Literature',
+        'Law',
+        'Geography',
+        'Music',
+        'Economics',
+        'Study of Some Foreign Place or Culture',
+        'Archaeology',
+        'Anthropology',
+        'Religion or Theology',
+        'Art',
+        'Education',
+        'Foreign Language',
+        'Political Science',
+        'Drama or Film',
+        'Phys Ed Sports Management',
+        'Journalism',
+        'Business',
+        'Psychology',
+        'Sociology'
+      ],
       courseTitle: '',
       category: 'placeholder',
       description: null,
@@ -94,6 +118,9 @@
       lectureShow: false,
       contentShow: false
     }),
+    filters: {
+      makeVal: string => string.replace(/\s+/g, '-').toLowerCase(),
+    },
     methods: {
       triggerFile(typr) {
         this.fileType = typr;

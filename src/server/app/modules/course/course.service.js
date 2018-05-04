@@ -6,7 +6,7 @@ import { lectureCrud } from './lecture.model';
 import { contentCrud } from './content.model';
 import { testCrud } from './coursetest.model';
 import { filesModel } from '../files';
-import { userCrud } from '../auth';
+import { userCrud, authModel } from '../auth';
 
 const { filesCrud } = filesModel;
 
@@ -20,6 +20,8 @@ class CourseService extends Crud {
     this.userCrud = userCrud;
     this.testCrud = testCrud;
     this._ = _;
+
+    this.authModel = authModel;
   }
 
   async createCourse(options) {
@@ -128,23 +130,39 @@ class CourseService extends Crud {
   }
 
   async removeEnroll(options) {
-    const record = await this.single(options.params);
-    const xyz = this._.remove(record.studends, filter => filter === options.body.uid);
-    console.log(record);
-    console.log(xyz);
-    const user = await this.userCrud.single({
-      qr: {
-        _id: options.body.uid
-      }
-    });
-    this._.remove(user.studentCourse, filter => filter === record._id);
-    await user.save();
-    return new Promise((resolve, reject) => {
-      record.save().then((result) => {
-        resolve(result);
-      }).catch((e) => {
+    return new Promise(async (resolve, reject) => {
+      let record;
+      let user;
+      try {
+        record = await this.singleUpdate({
+          qr: options.params.qr,
+          opt: {
+            $pull: {
+              students: options.body.uid
+            }
+          }
+        });
+        user = await this.userCrud.singleUpdate({
+          qr: {
+            _id: options.body.uid
+          },
+          select: 'studentCourse',
+          populate: [{
+            path: 'studentCourse',
+            model: 'courseModel',
+            select: 'title createdAt courseTest'
+          }],
+          opt: {
+            $pull: {
+              studentCourse: record._id
+            }
+          }
+        });
+      } catch (e) {
         reject(e);
-      });
+      } finally {
+        resolve(user);
+      }
     });
   }
 }

@@ -7,10 +7,10 @@
           <div class="modal__signup" v-if="signup">
             <h3>Start learning</h3>
             <form @submit.prevent="authorize">
-              <input type="text" placeholder="Your name" v-model="name">
-              <input type="text" placeholder="Your username" v-model="username">
-              <input type="email" v-model="email" placeholder="Your email">
-              <input type="password" v-model="password" placeholder="Your password">
+              <input type="text" placeholder="Your name" v-model="name" required>
+              <input type="text" placeholder="Your username" v-model="username" required>
+              <input type="email" v-model="email" placeholder="Your email" required>
+              <input type="password" v-model="password" placeholder="Your password" required>
               <input type="password" name="confirm_pass" placeholder="Confirm password">
               <input type="hidden" v-model="signup" value="true">
               <input type="submit" value="Signup" class="btn-primary">
@@ -19,8 +19,8 @@
           <div class="modal__login" v-else-if="!signup">
             <h3>Login to your account</h3>
             <form @submit.prevent="authorize">
-              <input type="text" name v-model="username" placeholder="Your email or username">
-              <input type="password" v-model="password" placeholder="Your password">
+              <input type="text" name v-model="username" placeholder="Your email or username" required>
+              <input type="password" v-model="password" placeholder="Your password" required>
               <a href="#" @click.prevent="noAccount">Don't have an account?</a>
               <input type="submit" value="Login" class="btn-primary">
             </form>

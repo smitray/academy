@@ -43,8 +43,7 @@
             <tr v-for="course in courses.studentCourse">
               <td><router-link :to="{ name: 'course-id', params: { id: course._id } }">{{ course.title }}</router-link></td>
               <td>{{ new Date(course.createdAt).toDateString() }}</td>
-              <td v-if="course.courseTest"><a href="#" @click.prevent="takeTest(course.courseTest._id)">{{ course.courseTest.title }}</a><a href="#" @click.prevent="deleteCourse(course._id)">Delete Course</a></td>
-              <td v-else>There aren't any test at the moment</td>
+              <td><a href="#" @click.prevent="takeTest(course.courseTest._id)" v-if="course.courseTest">{{ course.courseTest.title }}</a><span v-else>There aren't any test at the moment</span><a href="#" @click.prevent="deleteCourse(course._id)">Delete Course</a></td>
             </tr>
           </tbody>
         </table>
@@ -55,12 +54,13 @@
 
 <script>
   import { mapGetters } from 'vuex'; //eslint-disable-line
+  import _ from 'lodash';
 
   import PageBanner from '~/components/pageBanner.vue';
 
   export default {
     data: () => ({
-      courses: {}
+      courses: []
     }),
     middleware: 'auth',
     components: {
@@ -101,7 +101,7 @@
           await this.$axios.$post('/api/course/enroll/remove', {
             crId
           });
-          this.courses.splice(this.courses.findIndex(obj => obj._id === crId), 1);
+          this.courses.studentCourse.splice(this.courses.studentCourse.findIndex(obj => obj._id === crId), 1);
         } catch (e) {
           console.log(e);
         }
@@ -147,6 +147,15 @@
               padding: 1rem;
               text-align: center;
               c: #757575;
+
+              a {
+                c: map(colors, primary);
+                text-decoration: none;
+
+                &:nth-child(2) {
+                  ml: 1rem;
+                }
+              }
 
               &:first-child {
                 text-align: left;
