@@ -61,12 +61,12 @@
           await this.$store.commit('user/SET_TOKEN', user.data.token);
           await this.$store.dispatch('user/userDetails');
           if (!this.$store.state.user.coursePage) {
+            let path = 'auth';
+            if (user.data.acc_type === 'admin') {
+              path = 'admin'
+            }
             this.$router.push({
-              name: 'auth'
-            });
-          } else if (user.acc_type === 'admin') {
-            this.$router.push({
-              name: 'admin'
+              name: path
             });
           }
           if (this.signup) {

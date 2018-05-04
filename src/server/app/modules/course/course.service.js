@@ -129,8 +129,9 @@ class CourseService extends Crud {
 
   async removeEnroll(options) {
     const record = await this.single(options.params);
-    this._.remove(record.studends, filter => filter === options.body.uid);
+    const xyz = this._.remove(record.studends, filter => filter === options.body.uid);
     console.log(record);
+    console.log(xyz);
     const user = await this.userCrud.single({
       qr: {
         _id: options.body.uid

@@ -112,7 +112,8 @@ const authLocal = async (ctx) => {
   ctx.body = {
     success: 1,
     data: {
-      token
+      token,
+      acc_type: auth.acc_type
     },
     message: 'Loggedin successfully'
   };
