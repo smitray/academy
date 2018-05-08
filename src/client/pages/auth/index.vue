@@ -36,6 +36,7 @@
             <tr>
               <th>Course name</th>
               <th>Enroll date</th>
+              <th>test</th>
               <th>action</th>
             </tr>
           </thead>
@@ -43,7 +44,8 @@
             <tr v-for="course in courses.studentCourse">
               <td><router-link :to="{ name: 'course-id', params: { id: course._id } }">{{ course.title }}</router-link></td>
               <td>{{ new Date(course.createdAt).toDateString() }}</td>
-              <td><a href="#" @click.prevent="takeTest(course.courseTest._id)" v-if="course.courseTest">{{ course.courseTest.title }}</a><span v-else>There aren't any test at the moment</span><a href="#" @click.prevent="deleteCourse(course._id)">Delete Course</a></td>
+              <td><a href="#" @click.prevent="takeTest(course.courseTest._id)" v-if="course.courseTest">{{ course.courseTest.title }}</a><span v-else>There aren't any test at the moment</span></td>
+              <td><a href="#" @click.prevent="deleteCourse(course._id)">Delete Course</a></td>
             </tr>
           </tbody>
         </table>
@@ -54,7 +56,7 @@
 
 <script>
   import { mapGetters } from 'vuex'; //eslint-disable-line
-  import _ from 'lodash';
+  // import _ from 'lodash';
 
   import PageBanner from '~/components/pageBanner.vue';
 
@@ -101,7 +103,9 @@
           await this.$axios.$post('/api/course/enroll/remove', {
             crId
           });
-          this.courses.studentCourse.splice(this.courses.studentCourse.findIndex(obj => obj._id === crId), 1);
+          this.courses.studentCourse
+            .splice(this.courses.studentCourse.findIndex(obj => obj._id === crId), 1);
+          this.$store.commit('user/REMOVE_COURSE', crId);
         } catch (e) {
           console.log(e);
         }

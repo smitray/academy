@@ -3,61 +3,61 @@
     <h2>Our Instructors</h2>
     <div class="instructor--wr">
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-2.jpeg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-2.jpeg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-2.jpeg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-2.jpeg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-2.jpeg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-2.jpeg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>
       </div>
       <div class="instructor--5x">
-        <div class="instructor--img"><img src="~/assets/img/mock-trainer-1.jpg" alt=""></div>
+        <div class="instructor--img"><img src="/public/mock-trainer-1.jpg" alt=""></div>
         <h5>Instructor Name</h5>
         <p>Lorem ipsum dolor sit amet, consectetur.</p>
         <router-link :to="{ name: 'profile-id', params: { id: 2 } }">Profile</router-link>

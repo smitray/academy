@@ -4,7 +4,7 @@
     <div class="courses--wr">
       <div class="courses--3x" v-for="course in courses">
         <div class="courses--imgWr">
-          <img src="~/assets/img/mock-course.jpeg" alt="">
+          <img src="/public/mock-course.jpeg" alt="">
           <div class="courses--thumbBadge">
             <p>Top courses</p>
           </div>

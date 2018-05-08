@@ -5,7 +5,7 @@
         <p class="pageBanner__dialogue--title"><slot></slot></p>
       </div>
     </div>
-    <div class="pageBanner__image"><img src="~/assets/img/banner-4.jpeg" alt=""></div>
+    <div class="pageBanner__image"><img src="/public/banner-4.jpeg" alt=""></div>
   </section>
 </template>
 
@@ -40,7 +40,7 @@
       &:after {
         content: '';
         bg: url(~/assets/img/pg-banner.svg) no-repeat;
-        position: absolute 0 -25% * *;
+        position: absolute 0 -18% * *;
         background-size: 100% 100%;
         w: 123px;
         h: 100%;
@@ -63,7 +63,7 @@
       w: 65%;
       img {
         w: 100%;
-        h: auto;
+        h: 100%;
       }
     }
   }

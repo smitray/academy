@@ -58,7 +58,8 @@
           accType: this.accType
         });
         if (user.success) {
-          await this.$store.dispatch('user/userDetails', user.data.token);
+          await this.$store.commit('user/SET_TOKEN', user.data.token);
+          await this.$store.dispatch('user/userDetails');
           this.$router.push({
             name: 'auth'
           });

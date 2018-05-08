@@ -15,7 +15,7 @@
           <p>Minus autem suscipit distinctio perferendis dolore est facere voluptas soluta. Molestiae obcaecati quia quod blanditiis. Accusantium nostrum maxime voluptatum adipisci tempore necessitatibus fuga. Architecto amet, optio voluptatibus magnam quisquam harum voluptatem nesciunt in, illo corrupti molestiae deleniti alias, maxime ipsam!</p>
         </div>
         <div class="course__block--right">
-          <img src="~/assets/img/mock-trainer-1.jpg" alt="">
+          <img src="/public/mock-trainer-1.jpg" alt="">
           <ul>
             <li>Courses published by me:</li>
             <li>An awesome course</li>

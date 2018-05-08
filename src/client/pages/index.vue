@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="ind__banner--image">
-        <img src="~/assets/img/banner-1.png" alt="">
+        <img src="/public/banner-1.png" alt="">
       </div>
     </section>
     <!-- Index banner end -->
@@ -40,7 +40,7 @@
       <div class="container container--wr container--ovh container--rel container--block">
         <div class="ind__about--2x">
           <h2>About Us</h2>
-          <img src="http://via.placeholder.com/650x450" alt="">
+          <img src="/public/tra-nguyen-459276-unsplash.jpg" alt="">
         </div>
         <div class="ind__about--2x">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex non doloribus, sed distinctio autem quas, quis, corrupti enim nostrum odit libero error?</p>
@@ -102,6 +102,7 @@
       &--dialogue {
         w: 35%;
         position: relative;
+        z-index: 5;
         background: rgba(114,43,194,1);
         background: -moz-linear-gradient(top, rgba(114,43,194,1) 0%, rgba(184,107,220,1) 100%);
         background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(114,43,194,1)), color-stop(100%, rgba(184,107,220,1)));
@@ -114,10 +115,11 @@
         &:after {
           content: '';
           bg: url(~/assets/img/banner-bg.svg) no-repeat;
-          position: absolute 0 -40% * *;
+          position: absolute 0 -28% * *;
           background-size: 100% 100%;
           w: 200px;
           h: 100%;
+          z-index: -1;
         }
 
         &__wr {

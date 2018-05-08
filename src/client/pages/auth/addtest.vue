@@ -9,7 +9,7 @@
     <div class="container container--wr container--ovh container--rel container--block__ct addCourse--wr">
       <router-link :to="{ name: 'auth' }"><i class="icon-"></i>Back to dashboard</router-link>
       <form action="">
-        <input type="text" placeholder="Question" v-model="test.title">
+        <input type="text" placeholder="Name of the test" v-model="test.title">
         <select v-model="test.course">
           <option value="placeholder" disabled>Choose course</option>
           <option v-for="course in courses" v-bind:value="course._id">

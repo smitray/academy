@@ -34,7 +34,15 @@ const courseSingle = async (ctx) => {
       select: 'title category description lecture author price students',
       populate: [{
         path: 'lecture',
-        model: 'lectureModel'
+        model: 'lectureModel',
+        populate: [{
+          path: 'content',
+          model: 'contentModel',
+          populate: [{
+            path: 'file',
+            model: 'filesModel'
+          }]
+        }]
       }, {
         path: 'author',
         model: 'authModel',

@@ -1,20 +1,20 @@
 <template>
   <section class="admin__tool">
     <div class="admin__tool--4x">
-      <p class="big">1001</p>
-      <p class="small">GBP collected by upload</p>
+      <p class="big">£143</p>
+      <p class="small">Collected by upload</p>
     </div>
     <div class="admin__tool--4x">
-      <p class="big">1002</p>
-      <p class="small">GBP Collected By Tests</p>
+      <p class="big">£246</p>
+      <p class="small">Collected By Tests</p>
     </div>
     <div class="admin__tool--4x">
-      <p class="big">1003</p>
-      <p class="small">Admin Amount By Test (CBT/2)</p>
+      <p class="big">£127</p>
+      <p class="small">Admin earned by test</p>
     </div>
     <div class="admin__tool--4x">
-      <p class="big">1004</p>
-      <p class="small">Admin Amount By Upload (CBT/2)</p>
+      <p class="big">£146</p>
+      <p class="small">Admin earned by upload</p>
     </div>
   </section>
 </template>

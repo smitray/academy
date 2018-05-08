@@ -32,6 +32,12 @@ export const mutations = {
   },
   SET_TOKEN: (state, token) => {
     state.token = token;
+  },
+  ADD_COURSE: (state, crId) => {
+    state.user.studentCourse.push(crId);
+  },
+  REMOVE_COURSE: (state, crId) => {
+    state.user.studentCourse.splice(state.user.studentCourse.findIndex(obj => obj._id === crId), 1);
   }
 };
 
